@@ -1,0 +1,44 @@
+/* 文件：docs/.vitepress/theme/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600&display=swap');
+
+:root {
+  /* 全局字体 */
+  --vp-font-family-base: 'Noto Sans SC', sans-serif;
+  
+  /* 亮色模式（还原你的米色） */
+  --vp-c-bg: #fdfaf5;              /* 主体背景 */
+  --vp-c-bg-soft: #f5f2ed;         /* 侧边栏/柔和背景 */
+  --vp-c-bg-alt: #fdfaf5;          
+  --vp-c-brand-1: #3b82f6;         /* 你的 primary 蓝色 */
+  --vp-c-divider: rgba(229, 231, 235, 0.5); /* 柔和的边框线 *
+  /* 新增：强制网页最大宽度为 100%，让侧边栏能够真正贴到屏幕最左边缘 */
+  --vp-layout-max-width: 100%;
+}
+
+.dark {
+  /* 暗色模式（还原你的深蓝色） */
+  --vp-c-bg: #0f172a;              /* 主体背景 */
+  --vp-c-bg-soft: #1e293b;         /* 侧边栏 */
+  --vp-c-bg-alt: #0f172a;
+}
+
+/* 彻底打破 VitePress 对正文宽度的封印 */
+
+/* 1. 当页面有右侧大纲时，强行拉宽正文容器 */
+.VPDoc.has-aside .content-container {
+  max-width: 800px !important; 
+}
+
+/* 2. 当页面没有右侧大纲（比如首页）时，保持宽阔 */
+.VPDoc:not(.has-aside) .content-container {
+  max-width: 800px !important;
+}
+
+/* 3. 让外层容器配合扩宽，否则正文宽了会被裁切 */
+.VPDoc .container {
+  max-width: 100% !important; 
+}
+
+
+
+
