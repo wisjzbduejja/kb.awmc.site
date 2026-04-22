@@ -20,5 +20,8 @@
     "vitepress": "^1.6.4",
     "vitepress-sidebar": "^1.33.1",
     "vue": "^3.5.33"
+  },
+  "dependencies": {
+    "markdown-it-br": "^1.0.0"
   }
 }
