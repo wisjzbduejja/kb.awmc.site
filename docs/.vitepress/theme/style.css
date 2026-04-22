@@ -39,6 +39,11 @@
   max-width: 100% !important; 
 }
 
+/* 强制让 VitePress 识别 Markdown 中的单次换行 */
+.vp-doc p {
+  white-space: pre-wrap;
+}
+
 
 
 
