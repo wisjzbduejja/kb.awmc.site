@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/index.md",
+                "file": "未命名.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "未命名"
             }
           }
         ]
@@ -182,6 +182,8 @@
   },
   "active": "61dfd1da2560c969",
   "lastOpenFiles": [
+    "docs/index.md",
+    "未命名.md",
     "docs/Markdown使用指南/markdown使用指南.md",
     "docs/SUES校内课程/关于校内课程.md"
   ]
