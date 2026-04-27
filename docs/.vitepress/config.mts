@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
-import br from 'markdown-it-br' // 1. 引入插件
 
 export default defineConfig({
   title: "首页",
@@ -10,9 +9,6 @@ export default defineConfig({
   // 【重要】markdown 配置必须与 themeConfig 平级，放在最外层对象中
   markdown: {
     math: true, // ⚠️ 关键修复：你原来这里漏掉了一个逗号，会导致配置文件报错崩溃！
-    config: (md) => {
-      md.use(br) // 2. 使用插件让单回车变换行
-    }
   },
   
   themeConfig: {
