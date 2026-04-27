@@ -52,5 +52,21 @@
   white-space: pre-wrap;
 }
 
+/* 中英文联动高亮特效 (基于 CSS :has 伪类) */
+.vp-doc tr:has(.kw-1:hover) .kw-1,
+.vp-doc tr:has(.kw-2:hover) .kw-2,
+.vp-doc tr:has(.kw-3:hover) .kw-3,
+.vp-doc tr:has(.kw-4:hover) .kw-4,
+.vp-doc tr:has(.kw-5:hover) .kw-5 {
+  background-color: var(--vp-c-brand-soft); /* 使用你网站的主题色背景 */
+  color: var(--vp-c-brand); /* 使用你网站的主题色文字 */
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
 
-
+/* 默认给重点词汇加个虚线下划线，提示鼠标可以放上去 */
+.kw-1, .kw-2, .kw-3, .kw-4, .kw-5 {
+  border-bottom: 1px dashed var(--vp-c-divider);
+  cursor: help;
+  padding: 0 2px;
+}
