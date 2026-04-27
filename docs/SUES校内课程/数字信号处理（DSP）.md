@@ -445,7 +445,9 @@ $$\frac{\omega}{2\pi} = \frac{0.04\pi f}{2\pi} = 0.02f = \frac{f}{50}$$
 
 根据频率分辨率与记录时间的关系 $F = \frac{1}{T_p}$，为了满足 $F \le 50\text{ Hz}$：
 
-$$\frac{1}{T_p} \le 50$$$$T_p \ge \frac{1}{50} = 0.02\text{ s}$$
+$$\frac{1}{T_p} \le 50$$
+
+$$T_p \ge \frac{1}{50} = 0.02\text{ s}$$
 
 **答：最小记录时间** $T_{p\ min} = 0.02\text{ s}$ **（即** $20\text{ ms}$**）。**
 
@@ -465,7 +467,9 @@ $$T_{max} = \frac{1}{f_{s\ min}} = \frac{1}{2000} = 0.0005\text{ s}$$
 
 总记录时间等于采样点数乘以取样间隔，即 $T_p = N \cdot T$。 为了求最少采样点数，我们需要使用最小记录时间和最大取样间隔（或最低采样频率）：
 
-$$N_{min} = \frac{T_{p\ min}}{T_{max}} = T_{p\ min} \cdot f_{s\ min}$$$$N_{min} = 0.02\text{ s} \times 2000\text{ Hz} = 40$$
+$$N_{min} = \frac{T_{p\ min}}{T_{max}} = T_{p\ min} \cdot f_{s\ min}$$
+
+$$N_{min} = 0.02\text{ s} \times 2000\text{ Hz} = 40$$
 
 **答：最少采样点数** $N_{min} = 40$**。** _(注：在实际的微处理机工程应用中，为了使用快速傅里叶变换（FFT）算法提高计算效率，通常会将_ $N$ _向上取为 2 的整数次幂，例如_ $N=64$_。但从纯理论计算最小满足条件的角度，答案为 40。)_
 
@@ -515,7 +519,9 @@ _(直观理解：既然采样频率不变，要让分辨率翻倍，就必须让
 
 直接计算总耗时 $T_{DFT}$：
 
-$$T_{DFT} = 1048576 \times 4\ \mu s + 1047552 \times 1\ \mu s$$$$T_{DFT} = 4,194,304\ \mu s + 1,047,552\ \mu s = 5,241,856\ \mu s$$
+$$T_{DFT} = 1048576 \times 4\ \mu s + 1047552 \times 1\ \mu s$$
+
+$$T_{DFT} = 4,194,304\ \mu s + 1,047,552\ \mu s = 5,241,856\ \mu s$$
 
 换算成秒：$T_{DFT} \approx 5.24$ **秒**。
 
@@ -535,7 +541,9 @@ $$T_{DFT} = 1048576 \times 4\ \mu s + 1047552 \times 1\ \mu s$$$$T_{DFT} = 4,194
 
 FFT 计算总耗时 $T_{FFT}$：
 
-$$T_{FFT} = 5120 \times 4\ \mu s + 10240 \times 1\ \mu s$$$$T_{FFT} = 20,480\ \mu s + 10,240\ \mu s = 30,720\ \mu s$$
+$$T_{FFT} = 5120 \times 4\ \mu s + 10240 \times 1\ \mu s$$
+
+$$T_{FFT} = 20,480\ \mu s + 10,240\ \mu s = 30,720\ \mu s$$
 
 换算成毫秒：$T_{FFT} = 30.72$ **毫秒** (约 $0.03$ 秒)。
 
@@ -706,7 +714,9 @@ $$H(e^{j\omega}) = e^{-j2\omega} \left[ 2\cos(2\omega) - 4\cos(\omega) + 7 \righ
 
 我们来判断一下 $A(\omega)$ 的正负号。将 $\cos(2\omega) = 2\cos^2(\omega) - 1$ 代入：
 
-$$A(\omega) = 2(2\cos^2(\omega) - 1) - 4\cos(\omega) + 7$$$$A(\omega) = 4\cos^2(\omega) - 4\cos(\omega) + 5$$
+$$A(\omega) = 2(2\cos^2(\omega) - 1) - 4\cos(\omega) + 7$$
+
+$$A(\omega) = 4\cos^2(\omega) - 4\cos(\omega) + 5$$
 
 配方得到：
 
@@ -784,7 +794,9 @@ $$w(n) = 0.42 - 0.5 \cos\left(\frac{2\pi n}{N-1}\right) + 0.08 \cos\left(\frac{4
 
 将 $N = 21$ 代入该公式并化简：
 
-$$w(n) = 0.42 - 0.5 \cos\left(\frac{2\pi n}{20}\right) + 0.08 \cos\left(\frac{4\pi n}{20}\right)$$$$w(n) = 0.42 - 0.5 \cos\left(\frac{\pi n}{10}\right) + 0.08 \cos\left(\frac{\pi n}{5}\right), \quad 0 \le n \le 20$$
+$$w(n) = 0.42 - 0.5 \cos\left(\frac{2\pi n}{20}\right) + 0.08 \cos\left(\frac{4\pi n}{20}\right)$$
+
+$$w(n) = 0.42 - 0.5 \cos\left(\frac{\pi n}{10}\right) + 0.08 \cos\left(\frac{\pi n}{5}\right), \quad 0 \le n \le 20$$
 
 #### 3. 计算最终的滤波器单位脉冲响应 $h(n)$
 
@@ -803,7 +815,7 @@ $$h(n) = \frac{\sin[\frac{\pi}{4}(n-10)]}{\pi(n-10)} \left[ 0.42 - 0.5 \cos\left
 - $h_d(10) = 0.25$
     
 - $w(10) = 0.42 - 0.5 \cos(\pi) + 0.08 \cos(2\pi) = 0.42 - 0.5(-1) + 0.08(1) = 0.42 + 0.5 + 0.08 = 1$
-    
+
 
 因此：
 
