@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/SUES校内课程/信号与控制专业外语/写作.md",
+                "file": "docs/SUES校内课程/信控外语-句子练习.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "写作"
+              "title": "信控外语-句子练习"
             }
           }
         ]
@@ -182,6 +182,7 @@
   },
   "active": "61dfd1da2560c969",
   "lastOpenFiles": [
+    "docs/SUES校内课程/信控外语-写作.md",
     "docs/SUES校内课程/信号与控制专业外语/句子练习.md",
     "docs/SUES校内课程/信号与控制专业外语/单词词组练习.md",
     "句子练习.md",
