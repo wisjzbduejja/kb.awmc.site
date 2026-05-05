@@ -1,28 +1,86 @@
+import { readdirSync, statSync } from 'node:fs'
+import { dirname, extname, relative, resolve, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { generateSidebar } from 'vitepress-sidebar'
+import type { DefaultTheme } from 'vitepress'
+
+const docsRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+const excludedDirs = new Set(['.vitepress', '.obsidian', 'node_modules'])
+const excludedFiles = new Set(['index.md'])
+
+function normalizePath(path: string) {
+  return path.split(sep).join('/')
+}
+
+function trimMarkdownExt(fileName: string) {
+  return fileName.replace(/\.md$/i, '')
+}
+
+function compareByName(a: string, b: string) {
+  return a.localeCompare(b, 'zh-CN', {
+    numeric: true,
+    sensitivity: 'base'
+  })
+}
+
+function createSidebarItems(dir: string): DefaultTheme.SidebarItem[] {
+  const entries = readdirSync(dir)
+    .map((name) => {
+      const fullPath = resolve(dir, name)
+      const stats = statSync(fullPath)
+
+      return {
+        name,
+        fullPath,
+        isDirectory: stats.isDirectory(),
+        isMarkdown: stats.isFile() && extname(name).toLowerCase() === '.md'
+      }
+    })
+    .filter((entry) => {
+      if (entry.isDirectory) return !excludedDirs.has(entry.name)
+      if (entry.isMarkdown) return !excludedFiles.has(entry.name)
+      return false
+    })
+    .sort((a, b) => {
+      if (a.isDirectory !== b.isDirectory) return a.isDirectory ? 1 : -1
+      return compareByName(a.name, b.name)
+    })
+
+  return entries.flatMap((entry): DefaultTheme.SidebarItem[] => {
+    if (entry.isDirectory) {
+      const items = createSidebarItems(entry.fullPath)
+
+      return items.length
+        ? [{ text: entry.name, collapsed: false, items }]
+        : []
+    }
+
+    const relativePath = normalizePath(relative(docsRoot, entry.fullPath))
+    const link = `/${trimMarkdownExt(relativePath)}`
+
+    return [{ text: trimMarkdownExt(entry.name), link }]
+  })
+}
+
+const sidebar = createSidebarItems(docsRoot)
 
 export default defineConfig({
-  title: "首页",
   lang: 'zh-CN',
-  description: "基于 Markdown 驱动的个人知识库",
-  
-  // 【重要】markdown 配置必须与 themeConfig 平级，放在最外层对象中
-  markdown: {
-    math: true, // ⚠️ 关键修复：你原来这里漏掉了一个逗号，会导致配置文件报错崩溃！
-  },
-  
-  themeConfig: {
-    // 侧边栏配置
-    sidebar: generateSidebar({
-      documentRootPath: 'docs',   // 🎯 修复 1：去掉前面的斜杠，改为相对路径
-      scanStartPath: null,        // 🎯 修复 2：明确扫描起点，防止路径偏移
-      collapsed: false,
-      capitalizeFirst: true,
-      useTitleFromFileHeading: false,
-      excludeFolders: ['.vitepress', 'node_modules'] // 🎯 修复 3：排除掉不需要扫描的系统文件夹
-    }),
+  title: 'AWMC 知识库',
+  description: '基于 Markdown 驱动的个人知识库',
 
-    // 搜索汉化配置
+  markdown: {
+    math: true
+  },
+
+  themeConfig: {
+    sidebar,
+
+    outline: {
+      level: [2, 3],
+      label: '本页目录'
+    },
+
     search: {
       provider: 'local',
       options: {
@@ -34,12 +92,18 @@ export default defineConfig({
                 buttonAriaLabel: '搜索文档'
               },
               modal: {
-                noResultsText: '无法找到相关结果',
-                resetButtonTitle: '清除查询条件',
+                displayDetails: '显示详细列表',
+                resetButtonTitle: '重置搜索',
+                backButtonTitle: '关闭搜索',
+                noResultsText: '没有结果',
                 footer: {
                   selectText: '选择',
+                  selectKeyAriaLabel: '回车',
                   navigateText: '切换',
-                  closeText: '关闭'
+                  navigateUpKeyAriaLabel: '上箭头',
+                  navigateDownKeyAriaLabel: '下箭头',
+                  closeText: '关闭',
+                  closeKeyAriaLabel: 'Esc'
                 }
               }
             }
