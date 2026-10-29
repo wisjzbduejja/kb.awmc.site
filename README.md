@@ -2,7 +2,7 @@
 
 个人学习笔记与课程资料，使用 Markdown 编写，
 通过 VitePress 生成静态网站，推送到 GitHub 后由 腾讯EdgeOne 构建发布。
-可以访问[kb.awmc.site](kb.awmc.site)在线阅读。
+可以访问kb.awmc.site在线阅读。
 
 ## 内容说明
 
