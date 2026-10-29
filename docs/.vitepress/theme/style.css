@@ -23,11 +23,13 @@
   --kb-title-large: 32px;
   --kb-title-medium: 24px;
   --kb-title-small: 20px;
-  --kb-line-height: 1.6;
+  --kb-line-height: 1.8;
+  --kb-letter-spacing: 0.1em;
   --kb-space-1: 4px;
   --kb-space-2: 8px;
   --kb-space-3: 12px;
   --kb-space-4: 16px;
+  --kb-space-6: 24px;
   --kb-space-12: 48px;
   --kb-height-compact: 32px;
   --kb-height-control: 40px;
@@ -112,6 +114,7 @@
 }
 
 body { font-size: var(--kb-text-body); line-height: var(--kb-line-height); }
+body, button, input, select, textarea { letter-spacing: var(--kb-letter-spacing); }
 
 /* Keep the existing document width overrides. */
 .VPDoc .container { max-width: 100% !important; }
@@ -119,11 +122,11 @@ body { font-size: var(--kb-text-body); line-height: var(--kb-line-height); }
 .VPDoc .content { min-width: 0; }
 
 .vp-doc { font-size: var(--kb-text-body); line-height: var(--kb-line-height); }
-.vp-doc p { line-height: var(--kb-line-height); }
+.vp-doc p { line-height: var(--kb-line-height); margin: var(--kb-space-6) 0; }
 /* Heading overrides; VitePress already supplies the base weight and anchor behavior. */
 .vp-doc :is(h1, h2, h3, h4, h5, h6) {
   line-height: 1.3;
-  letter-spacing: normal;
+  letter-spacing: var(--kb-letter-spacing);
   overflow-wrap: anywhere;
 }
 .vp-doc h1 { font-size: var(--kb-title-large); }
